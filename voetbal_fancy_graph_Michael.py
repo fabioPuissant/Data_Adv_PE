@@ -4,10 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import xlrd
 
-path='/Users/Work/Documents/TIN2/Data Advanced/PE/voetbal'
-os.chdir(path)
-cwd = os.getcwd()
-data = pd.read_excel("voetbal.xlsx", sheetname="gegevens")
+data = pd.read_excel("voetbal.xlsx")
 naam = data["naam"]
 positie = data["positie"].unique()
 col = {'staart':'red', 'linkervleugel':'blue', 'rechtervleugel':'green','piloot':'black', 'keeper':'yellow'}

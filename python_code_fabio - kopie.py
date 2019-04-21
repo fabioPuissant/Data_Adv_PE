@@ -1,5 +1,5 @@
-import pandas as pd
 import numpy as np
+import pandas as pd
 import datetime 
 from matplotlib import pyplot as plt
 from statistics import mode
@@ -36,11 +36,15 @@ plt.ylabel('lengte')
 plt.show()
 
 sum_array = {}
+per_categorie ={}
+player_per_position={}
 for position in data['positie']:
     sum_array[position]=0
+    player_per_position[position]=0
 for x, row in data.iterrows():
     position=data.at[x, 'positie']
     sum_array[position]=sum_array[position]+ data.at[x, 'aantal gemaakte goalen']
+    player_per_position[position]=player_per_position[position] + 1
 x = list(sum_array.keys())
 y = list(sum_array.values())
 plt.bar(x,y)
@@ -52,12 +56,14 @@ plt.show()
 #Opdracht 6
 modus_array={}
 average_goals_position={}
-for position in sum_array.keys():
-    average_goals_position[position]=sum_array[position] / average_goals_position[position]
+for position in sum_array.keys():   
+    average_goals_position[position]=sum_array[position] / player_per_position[position]
     modus_array[position] = []
     print(average_goals_position[position])
+    
 for x, row in data.iterrows():
     position = data.at[x, 'positie']
     modus_array[position].append(data.at[x,'aantal gemaakte goalen'])
+    
 for key in modus_array.keys():
     print ('Mode for ' + key + ': ' + str((mode(modus_array[key]))))
